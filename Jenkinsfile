@@ -6,5 +6,12 @@ pipeline {
                 git 'https://github.com/ajayaj3008/devopsproject04.git' 
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv("sonar") {
+                    sh 'sonar-scanner'
+                }
+            }
+        }
     }
 }
