@@ -34,5 +34,13 @@ pipeline {
                     }
                 }
             }
+        stage('Deploy') {
+            steps {
+                sh '''
+                    sed -i "s|_IMAGE_|122610503302.dkr.ecr.ap-south-1.amazonaws.com/myrepo:latest|g" pod.yaml
+                    kubectl apply -f pod.yaml    
+                '''
+                }
+            }
     }
 }
